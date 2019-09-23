@@ -5608,6 +5608,7 @@ input, select, textarea {
 		/* position:absolute; */
 			display: inline-block;
 	}
+	/* 검색창 설정부분 */
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
