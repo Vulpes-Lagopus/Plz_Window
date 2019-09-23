@@ -359,6 +359,7 @@ document.onmousedown=function(){return false;}
 									</select>
 									<input type="button" id="btn_id_chk" value="중복확인"></input>
 								</div>
+								
 							</div>
 
 							<div class="form-group">

@@ -292,6 +292,7 @@ input, select, textarea {
 
 	input, select, textarea {
 		color: #212931;
+
 	}
 
 	a {
@@ -2490,6 +2491,7 @@ input, select, textarea {
 	select,
 	textarea {
 		border-color: #eeeeee;
+		
 	}
 
 		input[type="text"]:focus,
@@ -2498,6 +2500,7 @@ input, select, textarea {
 		select:focus,
 		textarea:focus {
 			border-color: #18bfef;
+			color: #b7c0c9;
 		}
 
 	select {
@@ -2515,7 +2518,8 @@ input, select, textarea {
 
 	input[type="checkbox"] + label,
 	input[type="radio"] + label {
-		color: #212931;
+		 color: #212931; 
+
 	}
 
 		input[type="checkbox"] + label:before,
@@ -3405,7 +3409,7 @@ input, select, textarea {
 			text-align: center;
 		}
 
-		#intro + #header {
+		#intro + #header{
 			margin-top: -20rem;
 		}
 
@@ -3449,7 +3453,7 @@ input, select, textarea {
 			opacity: 0;
 		}
 
-			body.is-preload #intro:not(.hidden) + #header + #nav {
+			body.is-preload #intro:not(.hidden) + #header + #nav{
 				-moz-transform: translateY(4rem);
 				-webkit-transform: translateY(4rem);
 				-ms-transform: translateY(4rem);
@@ -5556,3 +5560,331 @@ input, select, textarea {
     	border:1px solid #a5a5a5;
 	}
 		
+		
+		/*- 검색창 구현 */
+	
+	
+	/* 	#nav ul.divided li {
+			border-top-color: #ffffff;
+		}
+
+		#nav ul.icons li a.icon:hover:before {
+			color: #18bfef;
+		}
+
+		#nav ul.icons.alt li .icon:before {
+			box-shadow: inset 0 0 0 2px #ffffff;
+		}
+
+		#nav ul.icons.alt li a.icon:hover:before {
+			box-shadow: inset 0 0 0 2px #18bfef;
+		} */
+		
+		/* Intro */
+
+
+	/* 홈버튼 */
+	div #searchbar{
+		margin:auto;
+		width: 60%;
+		padding-top:1rem;
+		padding-right:1rem;
+		padding-left:1rem;
+		
+		overflow:hidden;
+		height:auto;
+		border : 1px solid white;
+		vertical-align: middle;
+		margin-bottom:15rem;
+		text-align:center;
+		align:center;
+	}
+	.searchtext{
+		width: 50%;
+		text-align: center;
+		margin-top:10px;
+		float: left;
+		font-color: #fff;
+		/* position:absolute; */
+			display: inline-block;
+	}
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	select,
+	textarea,
+	.searchtext {
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		-ms-appearance: none;
+		appearance: none;
+		background: transparent;
+		border-radius: 0;
+		border: solid 2px white;
+		color: inherit;
+		display: block;
+		outline: 0;
+		padding: 0 1rem;
+		text-decoration: none;
+		width: 60%;
+		float: left;
+		margin-left: 15px;
+	}
+	
+		input[type="text"]:focus,
+		input[type="password"]:focus,
+		input[type="email"]:focus,
+		select:focus,
+		textarea:focus,
+		.searchtext:focus {
+			border-color: #18bfef;
+			color: #b7c0c9;
+		}
+
+		.mainbutton {
+			text-decoration: none;
+			-moz-transition: color 0.2s ease-in-out;
+			-webkit-transition: color 0.2s ease-in-out;
+			-ms-transition: color 0.2s ease-in-out;
+			transition: color 0.2s ease-in-out;
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			border: 1px solid white;
+			color: #ffffff;
+			cursor: pointer;
+			margin:0px;
+			display: inline-block;
+			margin-bottom: 12px;
+		/* 
+			display: absolute; */
+			display: inline-block;
+			vertical-align: middle;
+			
+
+			width: 10%;
+			margin-right: 15px;
+			float:left;
+			overflow:hidden;
+			height:auto;
+	
+
+		}
+		#searchbar .mainbutton:before {
+				-moz-osx-font-smoothing: grayscale;
+				-webkit-font-smoothing: antialiased;
+				
+				font-style: normal;
+				font-variant: normal;
+				text-rendering: auto;
+				
+				text-transform: none !important;
+				font-family: 'Font Awesome 5 Free';
+				font-weight: 900;
+			}
+			#searchbar .mainbutton:before {
+				content: '\f015';
+				font-size: 1.8rem;
+				
+			}
+
+			#searchbar .mainbutton:hover {
+				color: #212931;
+			}
+
+			@media screen and (max-width: 736px) {
+
+				#searchbar .mainbutton {
+					height: 4rem;
+					line-height: 4rem;
+				}
+
+			}
+			/*검색바 버튼 색상*/
+			
+			/* Button 색상 변경 */
+
+	input[type="submit"],
+	input[type="reset"],
+	input[type="button"],
+	button,
+	.sbutton {
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		-ms-appearance: none;
+		appearance: none;
+		-moz-transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+		-webkit-transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+		-ms-transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+		transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+		border: 0;
+		border-radius: 0;
+		cursor: pointer;
+		display: inline-block;
+		font-family: "Source Sans Pro", Helvetica, sans-serif;
+		font-size: 0.8rem;
+		font-weight: 900;
+		letter-spacing: 0.075em;
+		height: 3rem;
+		line-height: 3rem;
+		padding: 0 2rem;
+		text-align: center;
+		text-decoration: none;
+		text-transform: uppercase;
+		white-space: nowrap;
+		float:right;
+		width:20%;
+		margin-top:10px;
+	}
+
+		input[type="submit"].icon:before,
+		input[type="reset"].icon:before,
+		input[type="button"].icon:before,
+		button.icon:before,
+		.sbutton.icon:before {
+			margin-right: 0.5rem;
+		}
+
+		input[type="submit"].icon.solo,
+		input[type="reset"].icon.solo,
+		input[type="button"].icon.solo,
+		button.icon.solo,
+		.sbutton.icon.solo {
+			position: relative;
+			width: 4rem;
+			height: 4rem;
+			line-height: 4rem;
+			border-radius: 4rem;
+			text-indent: 4rem;
+			overflow: hidden;
+			padding: 0;
+			white-space: nowrap;
+		}
+
+			input[type="submit"].icon.solo:before,
+			input[type="reset"].icon.solo:before,
+			input[type="button"].icon.solo:before,
+			button.icon.solo:before,
+			.sbutton.icon.solo:before {
+				position: absolute;
+				display: block;
+				top: 0;
+				left: 0;
+				width: inherit;
+				height: inherit;
+				line-height: inherit;
+				font-size: 1.25rem;
+				margin-right: 0;
+				text-align: center;
+				text-indent: 0;
+			}
+
+		input[type="submit"].fit,
+		input[type="reset"].fit,
+		input[type="button"].fit,
+		button.fit,
+		.sbutton.fit {
+			width: 100%;
+		}
+
+		input[type="submit"].small,
+		input[type="reset"].small,
+		input[type="button"].small,
+		button.small,
+		.sbutton.small {
+			font-size: 0.7rem;
+			height: 2.5rem;
+			line-height: 2.5rem;
+			padding: 0 1.5rem;
+		}
+
+		input[type="submit"].large,
+		input[type="reset"].large,
+		input[type="button"].large,
+		button.large,
+		.sbutton.large {
+			font-size: 0.9rem;
+			height: 3.5rem;
+			line-height: 3.5rem;
+			padding: 0 2.75rem;
+		}
+
+		@media screen and (max-width: 980px) {
+
+			input[type="submit"],
+			input[type="reset"],
+			input[type="button"],
+			sbutton,
+			.sbutton {
+				font-size: 0.9rem;
+				height: 3.25rem;
+				line-height: 3.25rem;
+			}
+
+				input[type="submit"].large,
+				input[type="reset"].large,
+				input[type="button"].large,
+				sbutton.large,
+				.sbutton.large {
+					font-size: 1rem;
+					height: 3.75rem;
+					line-height: 3.75rem;
+				}
+
+		}
+
+		input[type="submit"].disabled, input[type="submit"]:disabled,
+		input[type="reset"].disabled,
+		input[type="reset"]:disabled,
+		input[type="button"].disabled,
+		input[type="button"]:disabled,
+		button.disabled,
+		button:disabled,
+		.sbutton.disabled,
+		.sbutton:disabled {
+			pointer-events: none;
+			opacity: 0.25;
+		}
+
+	input[type="submit"],
+	input[type="reset"],
+	input[type="button"],
+	sbutton,
+	.sbutton {
+		background-color: transparent;
+		/* box-shadow: inset 0 0 0 2px #212931; */
+		box-shadow: inset 0 0 0 2px #b7c0c9; 
+		/* color: #212931 !important; */
+		color: #b7c0c9 !important;
+	}
+
+		input[type="submit"]:hover,
+		input[type="reset"]:hover,
+		input[type="button"]:hover,
+		sbutton:hover,
+		.sbutton:hover {
+			box-shadow: inset 0 0 0 2px #18bfef;
+			color: #18bfef !important;
+		}
+
+		input[type="submit"].primary,
+		input[type="reset"].primary,
+		input[type="button"].primary,
+		sbutton.primary,
+		.sbutton.primary {
+			background-color: #212931;
+			box-shadow: none;
+			color: #ffffff !important;
+		}
+
+			input[type="submit"].primary:hover,
+			input[type="reset"].primary:hover,
+			input[type="button"].primary:hover,
+			sbutton.primary:hover,
+			.sbutton.primary:hover {
+				background-color: #18bfef;
+			}
+			
+			
+			
+	
+		/* 검색바 숨김 */
+	

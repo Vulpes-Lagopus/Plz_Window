@@ -12,8 +12,7 @@
 		$header = $('#header'),
 		$nav = $('#nav'),
 		$main = $('#main'),
-		$navPanelToggle, $navPanel, $navPanelInner
-		$more;
+		$navPanelToggle, $navPanel, $navPanelInner;
 
 	// Breakpoints.
 		breakpoints({
