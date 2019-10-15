@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="PlzWindow">
+    <wb-module deploy-name="Plz_Windowss">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="PlzWindow"/>
-        <property name="java-output-path" value="/PlzWindow/build/classes"/>
+        <property name="context-root" value="Plz_Windowss"/>
+        <property name="java-output-path" value="/Plz_Windowss/build/classes"/>
     </wb-module>
 </project-modules>
