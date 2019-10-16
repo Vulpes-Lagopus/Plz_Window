@@ -1,0 +1,72 @@
+@charset "UTF-8";
+
+.questiontable{
+	marign:0;
+}
+
+.btnWrite{
+	padding:0;
+	positon:block;
+	overflow:hidden;
+	height:auto;
+}
+
+#btn_write{
+	margin-bottom:30px;
+}
+
+#writeinput{
+	border:1px solid black;
+	margin-top:10px;
+	width:98%;
+	height:30px;
+	margin:0;
+}
+
+#writecontent{
+		resize: none;
+		border:1px solid black;
+		width:98%;
+		margin:0;
+	}
+
+	#btn_submit{
+		border:1px solid black;
+		font-size: 16px;
+		font-weight: 0;
+		letter-spacing: 0em;
+		line-height: 0rem;
+		font-color:black;
+		color:black;
+		width:100px;
+		height:35px;
+		padding:0;
+}
+	
+	#btn_reset{
+		border:1px solid black;
+		font-size: 16px;
+		font-weight: 0;
+		letter-spacing: 0em;
+		line-height: 0rem;
+		font-color:black;
+		color:black;
+		width:100px;
+		height:35px;
+		padding:0;
+		margin-left:5px;
+		margin-right:5px;
+	}
+	
+	#btn_goback{
+		border:1px solid black;
+		font-size: 16px;
+		font-weight: 0;
+		letter-spacing: 0em;
+		line-height: 0rem;
+		font-color:black;
+		color:black;
+		width:100px;
+		height:35px;
+		padding:0;
+	}
