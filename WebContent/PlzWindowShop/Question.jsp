@@ -246,7 +246,7 @@
   </tr>
 </table>
 <div class="btnWrite">
-	<button id="btn_write" onclick="location.href='QuestionWrite.jsp'">글쓰기</button>
+	<button id="btn_write" onclick="location.href='QuestionWrite2.jsp'">글쓰기</button>
 </div>
 						<center>
 								<div class="pagination">
