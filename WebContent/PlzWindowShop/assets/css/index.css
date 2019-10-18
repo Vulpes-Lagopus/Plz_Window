@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+.reg:before {
+			content: '\f234';
+				font-size: 1.3rem;
+				-moz-osx-font-smoothing: grayscale;
+				-webkit-font-smoothing: antialiased;
+				font-style: normal;
+				font-variant: normal;
+				text-rendering: auto;
+				text-transform: none !important;
+				font-family: 'Font Awesome 5 Free';
+				font-weight: 900;
+				padding-right:15px;
+		}
+		
+.login:before {
+			content: '\f2f6';0
+00000000				font-size: 1.3rem;
+				-moz-osx-font-smoothing: grayscale;
+				-webkit-font-smoothing: antialiased;
+				font-style: normal;
+				font-variant: normal;
+				text-rendering: auto;
+				text-transform: none !important;
+				font-family: 'Font Awesome 5 Free';
+				font-weight: 900;
+	
+}

@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+input[type="text"]:focus,
+		input[type="password"]:focus,
+		input[type="email"]:focus,
+		select:focus,
+		textarea:focus {
+			color: black;
+		}
+
+#searchboard{
+	padding:0;
+	margin:0;
+	height:80px;
+}
+
+#boardsearchform{
+	vertical-align:middle;
+	position:absolute;
+	top:0;
+	right:10%;
+}
+
+.form-group{
+	padding:0;
+}
+
+#boardsearchform{
+	padding:0;
+	text-align:left;
+	vertical-align:middle;
+}
+
+#boardsearch{
+	border:1px solid black;
+	margin:0;
+	margin-top:10px;
+}
