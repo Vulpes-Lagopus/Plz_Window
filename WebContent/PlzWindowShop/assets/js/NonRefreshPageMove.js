@@ -103,6 +103,21 @@
      });
    }
 
+ function mainPage(){
+     $.ajax({
+       type : "GET",
+       url : "index.html",
+       dataType : "text",
+       error : function() {
+         alert('통신실패!!');
+       },
+       success : function(data) {
+         $('#wrapper').html(data);
+       }
+
+     });
+   }
+ 
  $(document).ready(function(){
 		a();
 	})

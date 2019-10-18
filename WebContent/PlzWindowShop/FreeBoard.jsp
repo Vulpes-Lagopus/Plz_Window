@@ -8,7 +8,7 @@
 -->
 <html>
 	<head>
-		<title>문의하기</title>
+		<title>자유게시판</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -55,9 +55,9 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-							<li><a href="index.html">메인페이지</a></li>
-							<li><a href="MainShop.jsp">상점</a></li>
-							<li class="active"><a href="FreeBoard.jsp">자유게시판</a></li>
+							<li><a href="javascript:mainPage();">메인페이지</a></li>
+							<li><a href="javascript:mainShop">상점</a></li>
+							<li class="active"><a href="javascript:freeBoard();">자유게시판</a></li>
 							<li><a href="Notice.jsp">고객지원</a></li>
 						</ul>
 						<ul class="icons">
@@ -74,7 +74,7 @@
 						<!-- Post -->
 							<section id="searchboard">
 							<header class="major">
-								<h3 style="padding-top:27px;">문의하기</h3>
+								<h3 style="padding-top:27px;">자유게시판</h3>
 								<form class="navbar-form navbar-right" id="boardsearchform" role="search">
 									<div class="form-group">
 										<input type="text" class="form-control" id="boardsearch" placeholder="       검색어 입력">

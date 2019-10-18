@@ -30,10 +30,10 @@
 					
 						<nav id="nav" style="max-width: 95%;">
 							<ul class="links">
-							<li><a href="index.html">메인페이지</a></li>
-							<li class="active"><a href="MainShop.jsp">상점</a></li>
-							<li><a href="FreeBoard.jsp">자유게시판</a></li>
-							<li><a href="Notice.jsp">고객지원</a></li>
+							<li><a href="javascript:mainPage();">메인페이지</a></li>
+							<li class="active"><a href="javascript:mainShop();">상점</a></li>
+							<li><a href="javascript:freeBoard();">자유게시판</a></li>
+							<li><a href="javascript:notice();">고객지원</a></li>
 							</ul> 
 						<!-- <ul class="icons">
 							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -150,6 +150,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="assets/js/nonRefreshPageMove.js"></script>
 </div>
 	</body>
 </html>
