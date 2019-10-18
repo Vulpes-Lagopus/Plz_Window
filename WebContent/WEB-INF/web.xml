@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>plz_Window</display-name>
+  <display-name>JspBoard</display-name>
+  
+  <!-- 요청->web.xml (1.컨트롤러역할을 해주는 서블릿을 등록) -->
+  <servlet>
+    <servlet-name>ControllerAction</servlet-name>
+    <servlet-class>controller.ControllerAction</servlet-class>
+    <init-param>
+        <param-name>propertyConfig</param-name>
+        <param-value>C:/Users/kitcoop/Desktop/Plz_Windows/WebContent/WEB-INF/commandPro.properties</param-value>
+    </init-param>
+  </servlet>
+  
+  <!-- 2.어떻게 요청이 들어왔을때 처리할 수 있도록 설정(keyword등로) -->
+  <servlet-mapping>
+     <servlet-name>ControllerAction</servlet-name>
+     <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
 </web-app>
+
+
+
+

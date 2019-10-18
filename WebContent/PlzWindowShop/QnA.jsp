@@ -106,7 +106,7 @@
 			<ul class="list-group">
 				<li class="list-group-item"><a href="Notice.jsp">공지사항</a></li>
 				<li class="list-group-item"><a href="QnA.jsp">자주묻는질문</a></li>
-				<li class="list-group-item"><a href="Question.jsp">1:1문의하기</a></li>
+				<li class="list-group-item"><a href="/Plz_Windows/question.do">1:1문의하기</a></li>
 			</ul>
 		</div>
 
@@ -115,7 +115,7 @@
 					<ul class="nav nav-tabs nav-justified" id="gesilink">
 						  <li><a href="Notice.jsp">공지사항</a></li>
 						  <li class="active"><a href="QnA.jsp">자주묻는질문</a></li>
-						  <li><a href="Question.jsp">1:1문의하기</a></li>
+						  <li><a href="/Plz_Windows/question.do">1:1문의하기</a></li>
 					</ul>
 		<br>
 		<!-- Q&A -->

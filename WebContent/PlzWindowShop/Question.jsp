@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE HTML>
 <!--
 	Massively by HTML5 UP
@@ -11,35 +14,19 @@
 		<title>문의하기</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="PlzWindowShop/assets/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="PlzWindowShop/assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<link href="assets/css/QnA.css" rel="stylesheet">
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
 		<link href="assets/css/notice.css" rel="stylesheet">
 		<link href="assets/css/questionwrite.css" rel="stylesheet">
-	
-	<style>
-	.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, 
-	.col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, 
-	.col-xs-3, .col-sm-3, .col-md-3, .col-lg-3,
-	.col-xs-4, .col-sm-4, .col-md-4, .col-lg-4,
-	.col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, 
-	.col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, 
-	.col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, 
-	.col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, 
-	.col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, 
-	.col-xs-10,.col-sm-10, .col-md-10, .col-lg-10,
-	.col-xs-11,.col-sm-11, .col-md-11, .col-lg-11, 
-	.col-xs-12,.col-sm-12, .col-md-12, .col-lg-12 {
-	/* 
-	border:3px solid gray;
-	padding:10px;
-	기존의 부트스트랩의 그리드에 해당하는 스타일클래스선택자를 내용을 변경 */
-	
-
-	}
-	</style>
+		
+		<link rel="stylesheet" href="PlzWindowShop/assets/css/QnA.css" />
+		<link rel="stylesheet" href="PlzWindowShop/assets/css/notice.css" />
+		<link rel="stylesheet" href="PlzWindowShop/assets/css/questionwrite.css" />
 	
 	</head>
 	<body class="is-preload">
@@ -107,7 +94,7 @@
 			<ul class="list-group">
 				<li class="list-group-item"><a href="Notice.jsp">공지사항</a></li>
 				<li class="list-group-item"><a href="QnA.jsp">자주묻는질문</a></li>
-				<li class="list-group-item"><a href="Question.jsp">1:1문의하기</a></li>
+				<li class="list-group-item"><a href="/Plz_Windows/question.do">1:1문의하기</a></li>
 			</ul>
 		</div>
 
@@ -116,7 +103,7 @@
 					<ul class="nav nav-tabs nav-justified" id="gesilink">
 						  <li><a href="Notice.jsp">공지사항</a></li>
 						  <li><a href="QnA.jsp">자주묻는질문</a></li>
-						  <li class="active"><a href="Question.jsp">1:1문의하기</a></li>
+						  <li class="active"><a href="/Plz_Windows/question.do">1:1문의하기</a></li>
 					</ul>
 		<br>
 		
@@ -125,7 +112,18 @@
 
 		<div class="panel-group" id="accordion">
 
+			<b>글목록(전체 글:${pgList.count})</b>
 			
+			<!-- 데이터의 유무  -->
+<c:if test="${pgList.count==0}">
+<table border="1" width="700" cellpadding="0" cellspacing="0" align="center">
+   <tr>
+        <td align="center">게시판에 저장된 글이 없습니다.</td>
+   </tr>
+</table>
+</c:if>
+
+<c:if test="${pgList.count > 0}">
 <table border="1" width="700" cellpadding="0" cellspacing="0" align="center" class="questiontable"> 
     <tr height="30" bgcolor="#b0e0e6"> 
       <td align="center"  width="50"  >번 호</td> 
@@ -134,133 +132,202 @@
       <td align="center"  width="150" >작성일</td> 
       <td align="center"  width="50" >조 회</td>
     </tr>
-   <tr height="30">
-    <td align="center"  width="50" >1</td>
-    <td  width="250" >          
-      <a href="content.jsp?num=3&pageNum=1">
-           상품관련 문의합니다.</a> 
-     </td>
+    
+    <!-- 실질적으로 레코드를 출력시켜주는 부분 -->
+    <c:set var="number" value="${pgList.number}" />
+    <c:forEach var="article" items="${articleList}">
+   <tr height="30"  onmouseover="this.style.backgroundColor='#e0ffff'"  
+                            onmouseout="this.style.backgroundColor='white'"><!-- 하나씩 감소하면서 출력하는 게시물번호 -->
+    <td align="center"  width="50" >
+          <c:out value="${number}" />
+          <c:set var="number"  value="${number-1}" />
+    </td>
+    
+    
+    
+<!-- 답변글인 경우 먼저 답변이미지를 부착시키는 코드  -->
+	<td  width="250"  align=center>
+	<c:if test="${article.re_level > 0}">
+	  <img src="images/level.gif" width="${7*article.re_level}" height="16">
+	  <img src="images/re.gif">
+    </c:if><c:if test="${article.re_level==0}">
+	  <img src="images/level.gif" width="${7*article.re_level}" height="16">
+	    <!-- num(게시물번호),pageNum(페이지번호)  -->
+	   </c:if>     
+      <a href="/JspBoard2/content.do?num=${article.num}&pageNum=${pgList.currentPage}">
+           ${article.subject}
+           </a> 
+         
+         <c:if test="${article.readcount >=20}">
+         <img src="images/hot.gif" border="0"  height="16">
+         </c:if>
+          </td>
     <td align="center"  width="100"> 
-       <a href="mailto:nup49rok1@empal.com">홍길동</a></td>
-    <td align="center"  width="150">2007/11/22</td>
-    <td align="center"  width="50">5</td>
+       <a href="mailto:${article.email}">${article.writer}</a></td>
+    <td align="center"  width="150">
+        <fmt:formatDate value="${article.reg_date}" timeStyle="medium" 
+                                  pattern="yy.MM.dd (hh:mm)" />
+    </td>
+    <td align="center"  width="50">${article.readcount}</td>
   </tr>
-  <tr height="30">
-    <td align="center"  width="50" >2</td>
-    <td  width="250" >          
-      <a href="content.jsp?num=3&pageNum=1">
-           문의합니다2.</a> 
-     </td>
-    <td align="center"  width="100"> 
-       <a href="mailto:nup49rok1@empal.com">java</a></td>
-    <td align="center"  width="150">2007/11/22</td>
-    <td align="center"  width="50">5</td>
-  </tr>
-  <tr height="30">
-    <td align="center"  width="50" >3</td>
-    <td  width="250" >          
-      <a href="content.jsp?num=3&pageNum=1">
-           문의합니다3.</a> 
-     </td>
-    <td align="center"  width="100"> 
-       <a href="mailto:nup49rok1@empal.com">java</a></td>
-    <td align="center"  width="150">2007/11/22</td>
-    <td align="center"  width="50">5</td>
-  </tr>
-  <tr height="30">
-    <td align="center"  width="50" >4</td>
-    <td  width="250" >          
-      <a href="content.jsp?num=3&pageNum=1">
-           문의합니다4.</a> 
-     </td>
-    <td align="center"  width="100"> 
-       <a href="mailto:nup49rok1@empal.com">java</a></td>
-    <td align="center"  width="150">2007/11/22</td>
-    <td align="center"  width="50">5</td>
-  </tr>
-  <tr height="30">
-    <td align="center"  width="50" >5</td>
-    <td  width="250" >          
-      <a href="content.jsp?num=3&pageNum=1">
-           문의합니다5.</a> 
-     </td>
-    <td align="center"  width="100"> 
-       <a href="mailto:nup49rok1@empal.com">java</a></td>
-    <td align="center"  width="150">2007/11/22</td>
-    <td align="center"  width="50">5</td>
-  </tr>
-  <tr height="30">
-    <td align="center"  width="50" >6</td>
-    <td  width="250" >          
-      <a href="content.jsp?num=3&pageNum=1">
-           문의합니다6.</a> 
-     </td>
-    <td align="center"  width="100"> 
-       <a href="mailto:nup49rok1@empal.com">java</a></td>
-    <td align="center"  width="150">2007/11/22</td>
-    <td align="center"  width="50">5</td>
-  </tr>
-  <tr height="30">
-    <td align="center"  width="50" >7</td>
-    <td  width="250" >          
-      <a href="content.jsp?num=3&pageNum=1">
-           문의합니다7.</a> 
-     </td>
-    <td align="center"  width="100"> 
-       <a href="mailto:nup49rok1@empal.com">java</a></td>
-    <td align="center"  width="150">2007/11/22</td>
-    <td align="center"  width="50">5</td>
-  </tr>
-  <tr height="30">
-    <td align="center"  width="50" >8</td>
-    <td  width="250" >          
-      <a href="content.jsp?num=3&pageNum=1">
-           문의합니다8.</a> 
-     </td>
-    <td align="center"  width="100"> 
-       <a href="mailto:nup49rok1@empal.com">java</a></td>
-    <td align="center"  width="150">2007/11/22</td>
-    <td align="center"  width="50">5</td>
-  </tr>
-  <tr height="30">
-    <td align="center"  width="50" >9</td>
-    <td  width="250" >          
-      <a href="content.jsp?num=3&pageNum=1">
-           문의합니다9.</a> 
-     </td>
-    <td align="center"  width="100"> 
-       <a href="mailto:nup49rok1@empal.com">java</a></td>
-    <td align="center"  width="150">2007/11/22</td>
-    <td align="center"  width="50">5</td>
-  </tr>
-  <tr height="30">
-    <td align="center"  width="50" >10</td>
-    <td  width="250" >          
-      <a href="content.jsp?num=3&pageNum=1">
-           문의합니다10.</a> 
-     </td>
-    <td align="center"  width="100"> 
-       <a href="mailto:nup49rok1@empal.com">java</a></td>
-    <td align="center"  width="150">2007/11/22</td>
-    <td align="center"  width="50">5</td>
-  </tr>
+   </c:forEach>
 </table>
+</c:if>
+    
+    
+    <!-- 페이징 처리  -->
+
+<c:if test="${pgList.startPage > pgList.blockSize}">
+	<a class="previous" href="/Plz_Windows/question.do?pageNum=${pgList.startPage-pgList.blockSize}&search=${search}&searchtext=${searchtext}">[이전]</a>
+</c:if>
+
+<c:forEach var="i" begin="${pgList.startPage}" end="${pgList.endPage}">
+	<a class="page" href="/Plz_Windows/question.do?pageNum=${i}&search=${search}&searchtext=${searchtext}">
+	   <c:if test="${pgList.currentPage==i}">
+	          <font color="red"><b>[${i}]</b></font>
+	   </c:if>
+	   <c:if test="${pgList.currentPage!=i}">
+	          ${i}
+	   </c:if>
+	</a>
+</c:forEach>
+
+<c:if test="${pgList.endPage < pgList.pageCount}">
+	<a class="next" href="/Plz_Windows/question.do?pageNum=${pgList.startPage+pgList.blockSize}&search=${search}&searchtext=${searchtext}">[다음]</a> 
+</c:if>
+    
+    
+<!--    <tr height="30"> -->
+<!--     <td align="center"  width="50" >1</td> -->
+<!--     <td  width="250" >           -->
+<!--       <a href="Questioncontent.jsp?num=3&pageNum=1"> -->
+<!--            상품관련 문의합니다.</a>  -->
+<!--      </td> -->
+<!--     <td align="center"  width="100">  -->
+<!--        <a href="mailto:nup49rok1@empal.com">홍길동</a></td> -->
+<!--     <td align="center"  width="150">2007/11/22</td> -->
+<!--     <td align="center"  width="50">5</td> -->
+<!--   </tr> -->
+<!--   <tr height="30"> -->
+<!--     <td align="center"  width="50" >2</td> -->
+<!--     <td  width="250" >           -->
+<!--       <a href="Questioncontent.jsp?num=3&pageNum=1"> -->
+<!--            문의합니다2.</a>  -->
+<!--      </td> -->
+<!--     <td align="center"  width="100">  -->
+<!--        <a href="mailto:nup49rok1@empal.com">java</a></td> -->
+<!--     <td align="center"  width="150">2007/11/22</td> -->
+<!--     <td align="center"  width="50">5</td> -->
+<!--   </tr> -->
+<!--   <tr height="30"> -->
+<!--     <td align="center"  width="50" >3</td> -->
+<!--     <td  width="250" >           -->
+<!--       <a href="Questioncontent.jsp?num=3&pageNum=1"> -->
+<!--            문의합니다3.</a>  -->
+<!--      </td> -->
+<!--     <td align="center"  width="100">  -->
+<!--        <a href="mailto:nup49rok1@empal.com">java</a></td> -->
+<!--     <td align="center"  width="150">2007/11/22</td> -->
+<!--     <td align="center"  width="50">5</td> -->
+<!--   </tr> -->
+<!--   <tr height="30"> -->
+<!--     <td align="center"  width="50" >4</td> -->
+<!--     <td  width="250" >           -->
+<!--       <a href="Questioncontent.jsp?num=3&pageNum=1"> -->
+<!--            문의합니다4.</a>  -->
+<!--      </td> -->
+<!--     <td align="center"  width="100">  -->
+<!--        <a href="mailto:nup49rok1@empal.com">java</a></td> -->
+<!--     <td align="center"  width="150">2007/11/22</td> -->
+<!--     <td align="center"  width="50">5</td> -->
+<!--   </tr> -->
+<!--   <tr height="30"> -->
+<!--     <td align="center"  width="50" >5</td> -->
+<!--     <td  width="250" >           -->
+<!--       <a href="Questioncontent.jsp?num=3&pageNum=1"> -->
+<!--            문의합니다5.</a>  -->
+<!--      </td> -->
+<!--     <td align="center"  width="100">  -->
+<!--        <a href="mailto:nup49rok1@empal.com">java</a></td> -->
+<!--     <td align="center"  width="150">2007/11/22</td> -->
+<!--     <td align="center"  width="50">5</td> -->
+<!--   </tr> -->
+<!--   <tr height="30"> -->
+<!--     <td align="center"  width="50" >6</td> -->
+<!--     <td  width="250" >           -->
+<!--       <a href="Questioncontent.jsp?num=3&pageNum=1"> -->
+<!--            문의합니다6.</a>  -->
+<!--      </td> -->
+<!--     <td align="center"  width="100">  -->
+<!--        <a href="mailto:nup49rok1@empal.com">java</a></td> -->
+<!--     <td align="center"  width="150">2007/11/22</td> -->
+<!--     <td align="center"  width="50">5</td> -->
+<!--   </tr> -->
+<!--   <tr height="30"> -->
+<!--     <td align="center"  width="50" >7</td> -->
+<!--     <td  width="250" >           -->
+<!--       <a href="Questioncontent.jsp?num=3&pageNum=1"> -->
+<!--            문의합니다7.</a>  -->
+<!--      </td> -->
+<!--     <td align="center"  width="100">  -->
+<!--        <a href="mailto:nup49rok1@empal.com">java</a></td> -->
+<!--     <td align="center"  width="150">2007/11/22</td> -->
+<!--     <td align="center"  width="50">5</td> -->
+<!--   </tr> -->
+<!--   <tr height="30"> -->
+<!--     <td align="center"  width="50" >8</td> -->
+<!--     <td  width="250" >           -->
+<!--       <a href="Questioncontent.jsp?num=3&pageNum=1"> -->
+<!--            문의합니다8.</a>  -->
+<!--      </td> -->
+<!--     <td align="center"  width="100">  -->
+<!--        <a href="mailto:nup49rok1@empal.com">java</a></td> -->
+<!--     <td align="center"  width="150">2007/11/22</td> -->
+<!--     <td align="center"  width="50">5</td> -->
+<!--   </tr> -->
+<!--   <tr height="30"> -->
+<!--     <td align="center"  width="50" >9</td> -->
+<!--     <td  width="250" >           -->
+<!--       <a href="Questioncontent.jsp?num=3&pageNum=1"> -->
+<!--            문의합니다9.</a>  -->
+<!--      </td> -->
+<!--     <td align="center"  width="100">  -->
+<!--        <a href="mailto:nup49rok1@empal.com">java</a></td> -->
+<!--     <td align="center"  width="150">2007/11/22</td> -->
+<!--     <td align="center"  width="50">5</td> -->
+<!--   </tr> -->
+<!--   <tr height="30"> -->
+<!--     <td align="center"  width="50" >10</td> -->
+<!--     <td  width="250" >           -->
+<!--       <a href="Questioncontent.jsp?num=3&pageNum=1"> -->
+<!--            문의합니다10.</a>  -->
+<!--      </td> -->
+<!--     <td align="center"  width="100">  -->
+<!--        <a href="mailto:nup49rok1@empal.com">java</a></td> -->
+<!--     <td align="center"  width="150">2007/11/22</td> -->
+<!--     <td align="center"  width="50">5</td> -->
+<!--   </tr> -->
+<!-- </table> -->
+
+
+
+
 <div class="btnWrite">
-	<button id="btn_write" onclick="location.href='QuestionWrite2.jsp'">글쓰기</button>
+	<button id="btn_write" onclick="location.href='/Plz_Windows/writeForm.do'">글쓰기</button>
 </div>
-						<center>
-								<div class="pagination">
-								<a href="#" class="previous">Prev</a>
-									<a href="#" class="page active">1</a>
-									<a href="#" class="page">2</a>
-									<a href="#" class="page">3</a>
-									<span class="extra">&hellip;</span>
-									<a href="#" class="page">8</a>
-									<a href="#" class="page">9</a>
-									<a href="#" class="page">10</a>
-									<a href="#" class="next">Next</a> 
-								</div>
-							</center>
+<%-- 						<center> --%>
+<!-- 								<div class="pagination"> -->
+<!-- 								<a href="#" class="previous">Prev</a> -->
+<!-- 									<a href="#" class="page active">1</a> -->
+<!-- 									<a href="#" class="page">2</a> -->
+<!-- 									<a href="#" class="page">3</a> -->
+<!-- 									<span class="extra">&hellip;</span> -->
+<!-- 									<a href="#" class="page">8</a> -->
+<!-- 									<a href="#" class="page">9</a> -->
+<!-- 									<a href="#" class="page">10</a> -->
+<!-- 									<a href="#" class="next">Next</a>  -->
+<!-- 								</div> -->
+<%-- 							</center> --%>
 
 <!-- Q&A마무리 -->			
 
