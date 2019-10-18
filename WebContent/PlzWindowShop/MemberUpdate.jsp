@@ -149,8 +149,10 @@
         
          <tr>
          <th>전화번호</th>
-           <td><input type="text"name="cel1" style="width:80px; height:35px;"> - 
-               <input type="text" name="cel2_1" title="전화번호" style="width:80px; height:35px;"> - 
+           <td><input type="text"name="cel1" style="width:80px; height:35px;"> 
+           <input type="text" style="width:10px;" value="-" disabled="disabled">  
+               <input type="text" name="cel2_1" title="전화번호" style="width:80px; height:35px;"> 
+               <input type="text" style="width:10px;" value="-" disabled="disabled">  
                <input type="text" name="cel2_2" style="width:80px; height:35px;">
             </td>
         </tr>

@@ -137,9 +137,11 @@ table.kblocktable tr th {
 								</tr>
 							</table>
 							<p align=center>
-								<a href=# class=m1>구매하기</a>&nbsp;&nbsp;<a
-									href=# class=m1>전체 삭제</a>&nbsp;&nbsp;<a
-									href=# class=m1>계속 쇼핑하기</a>
+								<button>구매하기</button>&nbsp;&nbsp;
+								<button
+									href=# class=m1>전체 삭제</button>
+									&nbsp;&nbsp;<button
+									href=# class=m1>계속 쇼핑하기</button>
 							</p>
 						</div>
 						<!-- //MAIN CONTENT -->
