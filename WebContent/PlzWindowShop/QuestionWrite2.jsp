@@ -11,12 +11,17 @@
 		<title>1:1문의 글작성</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="PlzWindowShop/assets/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="PlzWindowShop/assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<link href="assets/css/questionwrite2.css" rel="stylesheet">
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
 		<link href="assets/css/notice.css" rel="stylesheet">
+	
+		<link rel="stylesheet" href="PlzWindowShop/assets/css/questionwrite2.min.css" />
+		<link rel="stylesheet" href="PlzWindowShop/assets/css/notice.css" />
 	
 	<style>
 	.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, 
@@ -108,7 +113,7 @@
 
 					<!-- 본문메뉴 글작성하기 -->
 			<div class="col-md-9" >
-	<form method="post" class="writeform" action="writePro.jsp" onsubmit = "return writeSave()">
+	<form method="post" class="writeform" action="/Plz_Windows/writePro.do" onsubmit = "return writeSave()">
 	<table class="writeFormTable">
 	 
     <tr>
