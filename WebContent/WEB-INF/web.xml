@@ -8,7 +8,7 @@
     <servlet-class>controller.ControllerAction</servlet-class>
     <init-param>
         <param-name>propertyConfig</param-name>
-        <param-value>C:/Users/kitcoop/Desktop/Plz_Windows/WebContent/WEB-INF/commandPro.properties</param-value>
+        <param-value>C:\Users\kitcoop\git\Plz_Windows\WebContent\WEB-INF/commandPro.properties</param-value>
     </init-param>
   </servlet>
   
