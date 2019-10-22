@@ -20,30 +20,8 @@
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
 		<link href="assets/css/notice.css" rel="stylesheet">
 	
-		<link rel="stylesheet" href="PlzWindowShop/assets/css/questionwrite2.min.css" />
+		<link rel="stylesheet" href="PlzWindowShop/assets/css/questionwrite2.css" />
 		<link rel="stylesheet" href="PlzWindowShop/assets/css/notice.css" />
-	
-	<style>
-	.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, 
-	.col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, 
-	.col-xs-3, .col-sm-3, .col-md-3, .col-lg-3,
-	.col-xs-4, .col-sm-4, .col-md-4, .col-lg-4,
-	.col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, 
-	.col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, 
-	.col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, 
-	.col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, 
-	.col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, 
-	.col-xs-10,.col-sm-10, .col-md-10, .col-lg-10,
-	.col-xs-11,.col-sm-11, .col-md-11, .col-lg-11, 
-	.col-xs-12,.col-sm-12, .col-md-12, .col-lg-12 {
-	/* 
-	border:3px solid gray;
-	padding:10px;
-	기존의 부트스트랩의 그리드에 해당하는 스타일클래스선택자를 내용을 변경 */
-	}
-	
-	
-	</style>
 	
 	</head>
 	<body class="is-preload">
@@ -98,7 +76,7 @@
 	</div> -->
 
 	
-		<div id="beforeWrite" style="text-align:right; margin:10px 65px 0px 0px; padding:0px;"><a href="Question.jsp">목록으로 돌아가기</a></div>
+		<div id="beforeWrite" style="text-align:right; margin:10px 65px 0px 0px; padding:0px;"><a href="/Plz_Windows/question.do">목록으로 돌아가기</a></div>
 		<div class="row" style="border-style:none;">	
 		<div class="col-md-3 panel panel-info " id="gesilink" style="border: solid 1px #BDBDBD;">
 			<div class="panel-heading">
@@ -114,6 +92,13 @@
 					<!-- 본문메뉴 글작성하기 -->
 			<div class="col-md-9" >
 	<form method="post" class="writeform" action="/Plz_Windows/writePro.do" onsubmit = "return writeSave()">
+	
+	<!-- 입력하지 않고 매개변수로 전달해서 테이블에 저장 (hidden) -->  
+   <input type="hidden" name="num" value="${num}">
+   <input type="hidden" name="ref" value="${ref}">
+   <input type="hidden" name="re_step" value="${re_step}">
+   <input type="hidden" name="re_level" value="${re_level}">
+	
 	<table class="writeFormTable">
 	 
     <tr>
@@ -138,7 +123,7 @@
 	  <tr>
 	    <td width="20%"  bgcolor="#A6A6A6" align="center" style="padding:0; font-size:16px; vertical-align:middle; border:1px solid black;">내 용</td>
 	    <td width="80%" style="border:1px solid black;">
-	     <textarea  rows="18" cols="10" id="writecontent" style=" width:550px; height:300px;"></textarea> </td>
+	     <textarea  rows="18" cols="10" id="writecontent" name="content" style=" width:550px; height:300px;"></textarea> </td>
 	  </tr>
 	  
 	  <tr id="attached">
@@ -150,7 +135,7 @@
 	  
 	<tr>      
 	 <td colspan=2 bgcolor="#A6A6A6" align="center" style="border:1px solid #5D5D5D;"> 
-	  <button type="button" id="btn_goback" OnClick="window.location='Question.jsp'">목록보기</button>
+	  <button type="button" id="btn_goback" OnClick="window.location='/Plz_Windows/question.do'">목록보기</button>
 	  <button type="reset" id="btn_reset">다시작성</button>
 	  <button type="submit" id="btn_submit">글쓰기</button>
 	</td></tr></table>

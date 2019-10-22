@@ -176,13 +176,14 @@
     
     
     <!-- 페이징 처리  -->
-
+<center>
+<div class="pagination">
 <c:if test="${pgList.startPage > pgList.blockSize}">
 	<a class="previous" href="/Plz_Windows/question.do?pageNum=${pgList.startPage-pgList.blockSize}&search=${search}&searchtext=${searchtext}">[이전]</a>
 </c:if>
 
 <c:forEach var="i" begin="${pgList.startPage}" end="${pgList.endPage}">
-	<a class="page" href="/Plz_Windows/question.do?pageNum=${i}&search=${search}&searchtext=${searchtext}">
+	<a class="page active" href="/Plz_Windows/question.do?pageNum=${i}&search=${search}&searchtext=${searchtext}">
 	   <c:if test="${pgList.currentPage==i}">
 	          <font color="red"><b>[${i}]</b></font>
 	   </c:if>
@@ -195,8 +196,8 @@
 <c:if test="${pgList.endPage < pgList.pageCount}">
 	<a class="next" href="/Plz_Windows/question.do?pageNum=${pgList.startPage+pgList.blockSize}&search=${search}&searchtext=${searchtext}">[다음]</a> 
 </c:if>
-    
-    
+    </div>
+    </center>
 <!--    <tr height="30"> -->
 <!--     <td align="center"  width="50" >1</td> -->
 <!--     <td  width="250" >           -->
