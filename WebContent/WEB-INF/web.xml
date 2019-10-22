@@ -1,28 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>JspBoard</display-name>
+  <display-name>Plz_Window</display-name>
   
-  <!-- 요청->web.xml (1.컨트롤러역할을 해주는 서블릿을 등록) -->
+  
+  <context-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>classpath:config/applicationContext.xml</param-value>
+  </context-param>
+  
+  <listener>
+  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  <!-- 1.요청을 받아서 처리해주는 컨트롤러 등록(1) -->
+  
   <servlet>
-    <servlet-name>ControllerAction</servlet-name>
-    <servlet-class>controller.ControllerAction</servlet-class>
-    <init-param>
-        <param-name>propertyConfig</param-name>
-        <param-value>C:\Users\kitcoop\git\Plz_Windows\WebContent\WEB-INF/commandPro.properties</param-value>
-    </init-param>
+    <servlet-name>dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
   </servlet>
   
-  <!-- 2.어떻게 요청이 들어왔을때 처리할 수 있도록 설정(keyword등로) -->
   <servlet-mapping>
-     <servlet-name>ControllerAction</servlet-name>
-     <url-pattern>*.do</url-pattern>
+      <servlet-name>dispatcher</servlet-name>
+      <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  
+  <!-- jsp에서의 한글처리를 하기위한 설정(한글처리 필터클래스를 등록,적용범위를 지정) p263  -->
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  
+  <!-- 요청경로에 따른 한글처리를 해줄 클래스별칭을 매핑(=연결) -->
+  <filter-mapping>
+       <filter-name>encodingFilter</filter-name>
+       <url-pattern>/*</url-pattern>
+  </filter-mapping>
   
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
 </web-app>
-
-
 
 
