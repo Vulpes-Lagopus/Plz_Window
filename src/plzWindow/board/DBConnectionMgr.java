@@ -76,7 +76,7 @@ public class DBConnectionMgr {
     public DBConnectionMgr() throws IOException {
     	Properties props=new Properties();
     	FileInputStream in=new FileInputStream
-    			("C:/Users/kitcoop/Desktop/Plz_Windows/WebContent/PlzWindowShop/dbtest/dbmysql.properties");
+    			("C:/Users/kitcoop/git/Plz_Window/WebContent/PlzWindowShop/dbtest/dbmysql.properties");
     	props.load(in);//파일의 내용 메모리에 불러오기
     	in.close();
     	_driver=props.getProperty("jdbc.drivers");

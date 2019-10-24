@@ -30,7 +30,7 @@ public class PlzWindowDAO {  //MemberDAO
 		try {
 			con=pool.getConnection();//커넥션풀에서 한개 빌려오는작업
 			System.out.println("con=>"+con);//디버깅코드
-			sql="select count(*) from board"; //select count(*) from member;
+			sql="select count(*) from questionboard"; //select count(*) from member;
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {//보여주는 결과가 있다면
@@ -92,7 +92,7 @@ public class PlzWindowDAO {  //MemberDAO
 		     *그룹번호가 가장 최신의 글을 중심으로 정렬하되,만약에 level이 같은 경우에는
 		     *step값으로 오름차순을 통해서 몇번째 레코드번호를 기준해서 정렬할것인가? 
 		     */
-			sql="select * from board order by ref desc,re_step asc limit ?,?";//1,10
+			sql="select * from questionboard order by ref desc,re_step asc limit ?,?";//1,10
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, start-1);//mysql은 레코드순번이 내부적으로 0부터 시작
 			pstmt.setInt(2, end);
@@ -102,18 +102,15 @@ public class PlzWindowDAO {  //MemberDAO
 				articleList=new ArrayList(end);//10=>end갯수만큼 데이터를 담을 공간을 생성하라
 				do {
 					PlzWindowDTO article=new PlzWindowDTO();//MemberDTO~
-					article.setNum(rs.getInt("num"));
-					article.setWriter(rs.getString("writer"));
-					article.setEmail(rs.getString("email"));
-					article.setSubject(rs.getString("subject"));
-					article.setPasswd(rs.getString("passwd"));
-					article.setReg_date(rs.getTimestamp("reg_date"));//오늘날짜->코딩 ->now()
+					article.setNum(rs.getInt("quest_number"));
+					article.setWriter(rs.getString("mem_id"));
+					article.setSubject(rs.getString("quest_title"));
+					article.setReg_date(rs.getTimestamp("quest_date"));//오늘날짜->코딩 ->now()
 					article.setReadcount(rs.getInt("readcount"));//default->0
 					article.setRef(rs.getInt("ref"));//그룹번호->신규글과 답변글 묶어주는 역할
 					article.setRe_step(rs.getInt("re_step"));//답변글이 나오는 순서(0,1,2,3,,오름차순)
 					article.setRe_level(rs.getInt("re_level"));//들여쓰기(답변의 깊이)
-					article.setContent(rs.getString("content"));//글내용
-					article.setIp(rs.getString("ip"));//글쓴이의 ip주소
+					article.setContent(rs.getString("quest_content"));//글내용
 					                                              //request.getRemoteAddr()
 					//추가
 					articleList.add(article);
@@ -162,7 +159,7 @@ public List getBoardArticles(int start,int end,String search,String searchtext) 
 					article.setWriter(rs.getString("mem_id"));
 					article.setSubject(rs.getString("quest_title"));
 					article.setReg_date(rs.getTimestamp("quest_date"));//오늘날짜->코딩 ->now()
-					//article.setReadcount(rs.getInt("readcount"));//default->0
+					article.setReadcount(rs.getInt("readcount"));//default->0
 					article.setRef(rs.getInt("ref"));//그룹번호->신규글과 답변글 묶어주는 역할
 					article.setRe_step(rs.getInt("re_step"));//답변글이 나오는 순서(0,1,2,3,,오름차순)
 					article.setRe_level(rs.getInt("re_level"));//들여쓰기(답변의 깊이)
@@ -187,8 +184,8 @@ public List getBoardArticles(int start,int end,String search,String searchtext) 
     	//1.페이징 처리결과를 저장할 hashtable객체를 선언
     	Hashtable<String,Integer> pgList=new Hashtable<String,Integer>();
     	//ListAction에서의 복잡한 페이징처리를 대신 처리
-	     int pageSize=5;//numPerPage->페이지당 보여주는 게시물수(=레코드수) 10
-	     int blockSize=3;//pagePerBlock->블럭당 보여주는 페이지수 10
+	     int pageSize=10;//numPerPage->페이지당 보여주는 게시물수(=레코드수) 10
+	     int blockSize=10;//pagePerBlock->블럭당 보여주는 페이지수 10
 	     
 	    //게시판을 맨 처음 실행시키면 무조건 1페이지부터 출력
 	    if(pageNum==null){
@@ -310,13 +307,13 @@ public List getBoardArticles(int start,int end,String search,String searchtext) 
 				try {
 					con=pool.getConnection();
 				  
-					sql="update board set readcount=readcount+1 where num=?";//1,10
+					sql="update questionboard set readcount=readcount+1 where quest_number=?";//1,10
 					pstmt=con.prepareStatement(sql);
 					pstmt.setInt(1, num);//mysql은 레코드순번이 내부적으로 0부터 시작
 					int update=pstmt.executeUpdate();
 					System.out.println("조회수 증가유무(update)=>"+update);//1
 					
-					sql="select * from board where num=?";//1,10
+					sql="select * from questionboard where quest_number=?";//1,10
 					pstmt=con.prepareStatement(sql);
 					pstmt.setInt(1, num);
 					rs=pstmt.executeQuery();
@@ -349,18 +346,15 @@ public List getBoardArticles(int start,int end,String search,String searchtext) 
 	//-----------중복된 레코드 한개를 담을 수 있는 메서드를 따로 만들어서 처리------------	
 	private PlzWindowDTO makeArticleFromResult() throws Exception {
 		PlzWindowDTO article=new PlzWindowDTO();
-		article.setNum(rs.getInt("num"));
-		article.setWriter(rs.getString("writer"));
-		article.setEmail(rs.getString("email"));
-		article.setSubject(rs.getString("subject"));
-		article.setPasswd(rs.getString("passwd"));
-		article.setReg_date(rs.getTimestamp("reg_date"));//오늘날짜->코딩 ->now()
+		article.setNum(rs.getInt("quest_number"));
+		article.setWriter(rs.getString("mem_id"));
+		article.setSubject(rs.getString("quest_title"));
+		article.setReg_date(rs.getTimestamp("quest_date"));//오늘날짜->코딩 ->now()
 		article.setReadcount(rs.getInt("readcount"));//default->0
 		article.setRef(rs.getInt("ref"));//그룹번호->신규글과 답변글 묶어주는 역할
 		article.setRe_step(rs.getInt("re_step"));//답변글이 나오는 순서(0,1,2,3,,오름차순)
 		article.setRe_level(rs.getInt("re_level"));//들여쓰기(답변의 깊이)
-		article.setContent(rs.getString("content"));//글내용
-		article.setIp(rs.getString("ip"));
+		article.setContent(rs.getString("quest_content"));//글내용
 		return article;
 	}
 	
@@ -373,7 +367,7 @@ public List getBoardArticles(int start,int end,String search,String searchtext) 
 		try {
 			con=pool.getConnection();
 		  
-			sql="select * from board where num=?";//1,10
+			sql="select * from questionboard where quest_number=?";//1,10
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			rs=pstmt.executeQuery();
@@ -412,7 +406,7 @@ public List getBoardArticles(int start,int end,String search,String searchtext) 
 		
 		try {
 			con=pool.getConnection();
-			sql="select passwd from board where num=?"; //최대값+1=실제 저장할 게시물번호
+			sql="select passwd from questionboard where quest_number=?"; //최대값+1=실제 저장할 게시물번호
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1,article.getNum() );
 			rs=pstmt.executeQuery();
@@ -421,8 +415,8 @@ public List getBoardArticles(int start,int end,String search,String searchtext) 
 				System.out.println("dbpasswd=>"+dbpasswd);//확인한뒤에 나중에 삭제
 			   
 			   if(dbpasswd.contentEquals(article.getPasswd())) {			
-					sql="update board set writer=?,email=?,subject=?,passwd=?,";
-					sql+="content=?  where num=?";
+					sql="update questionboard set writer=?,email=?,subject=?,passwd=?,";
+					sql+="content=?  where quest_number=?";
 					pstmt=con.prepareStatement(sql);
 					pstmt.setString(1, article.getWriter());//웹에서는 Setter Method를 메모리에 저장
 					pstmt.setString(2, article.getEmail());
@@ -455,7 +449,7 @@ public List getBoardArticles(int start,int end,String search,String searchtext) 
 		
 		try {
 			con=pool.getConnection();
-			sql="select passwd from board where num=?"; //최대값+1=실제 저장할 게시물번호
+			sql="select passwd from questionboard where quest_number=?"; //최대값+1=실제 저장할 게시물번호
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1,num );
 			rs=pstmt.executeQuery();//select구문을 사용
@@ -464,7 +458,7 @@ public List getBoardArticles(int start,int end,String search,String searchtext) 
 				System.out.println("dbpasswd=>"+dbpasswd);//확인한뒤에 나중에 삭제
 			   
 			   if(dbpasswd.contentEquals(passwd)) {	//DB상의 암호=웹상의 암호		
-					sql="delete from board where num=?";
+					sql="delete from questionboard where quest_number=?";
 					pstmt=con.prepareStatement(sql);//pstmt=>new연산자를 통해서 값을 
 					pstmt.setInt(1, num);
 					int delete=pstmt.executeUpdate();//sql구문을 실행시키는 메서드(테이블의 구조)

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <!--
 	Massively by HTML5 UP
@@ -117,7 +118,14 @@
 	  <tr>
 	    <td width="20%"  bgcolor="#A6A6A6" align="center" style="padding:0; font-size:16px; vertical-align:middle; border:1px solid black;">제 목</td>
 	    <td width="80%" style="border:1px solid black;">
-	       <input type="text" size="70" maxlength="50" name="subject" id="writeinput" style="width:550px; height:35px;"></td>
+	    <c:if test="${num==0}">
+	       <input type="text" size="70" maxlength="50" name="subject" id="writeinput" style="width:550px; height:35px;">
+	    </c:if>
+	    <c:if test="${num!=0}">
+	       <input type="text" size="70" maxlength="50" name="subject" id="writeinput" style="width:550px; height:35px;" value="[re]">
+	    </c:if>
+	    </td>
+	    
 	  </tr>
 	  
 	  <tr>

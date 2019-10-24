@@ -148,13 +148,13 @@
 <!-- 답변글인 경우 먼저 답변이미지를 부착시키는 코드  -->
 	<td  width="250"  align=center>
 	<c:if test="${article.re_level > 0}">
-	  <img src="images/level.gif" width="${7*article.re_level}" height="16">
-	  <img src="images/re.gif">
+	  <img src="PlzWindowShop/images/level.gif" width="${7*article.re_level}" height="16">
+	  <img src="PlzWindowShop/images/re.gif">
     </c:if><c:if test="${article.re_level==0}">
-	  <img src="images/level.gif" width="${7*article.re_level}" height="16">
+	  <img src="PlzWindowShop/images/level.gif" width="${7*article.re_level}" height="16">
 	    <!-- num(게시물번호),pageNum(페이지번호)  -->
 	   </c:if>     
-      <a href="/JspBoard2/content.do?num=${article.num}&pageNum=${pgList.currentPage}">
+      <a href="/Plz_Windows/questioncontent.do?num=${article.num}&pageNum=${pgList.currentPage}">
            ${article.subject}
            </a> 
          
@@ -163,7 +163,7 @@
          </c:if>
           </td>
     <td align="center"  width="100"> 
-       <a href="mailto:${article.email}">${article.writer}</a></td>
+       <a href="#">${article.writer}</a></td>
     <td align="center"  width="150">
         <fmt:formatDate value="${article.reg_date}" timeStyle="medium" 
                                   pattern="yy.MM.dd (hh:mm)" />
