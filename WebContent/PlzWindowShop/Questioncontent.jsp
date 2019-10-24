@@ -124,7 +124,7 @@
 											<dl class="article-info  muted">
 												<dd class="createdby hasTooltip" itemprop="author" title="" data-original-title="Written by ">
 													<i class="fa fa-user"></i>
-													<span itemprop="name">작성자 : plz_Window</span>
+													<span itemprop="name">작성자 : ${article.writer}</span>
 													<span style="display: none;" itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization">
 													<span itemprop="logo" itemscope="" itemtype="https://schema.org/ImageObject">
 														<img src="https://directg.net/images/common/dg_logo.png" alt="logo" itemprop="url">
@@ -135,32 +135,27 @@
 												</dd>
 												<dd class="category-name hasTooltip" title="" data-original-title="코드 베인 - 시즌 패스 판매 안내 ">
 													<i class="fa fa-folder-open"></i>
-													<span itemprop="genre">공지</span>
+													<span itemprop="genre">문의</span>
 												</dd>
 												<dd class="published hasTooltip" title="" data-original-title="Published: ">
 													<i class="fa fa-calendar"></i>
-													<time datetime="2019-10-02 14:16:02" itemprop="datePublished">작성일 : 2019-10-02</time>
+													<time datetime="2019-10-02 14:16:02" itemprop="datePublished">작성일 : ${article.reg_date}</time>
 												</dd>
 												<dd class="hits">
 													<i class="fa fa-eye"></i>
-													<meta itemprop="interactionCount" content="UserPageVisits:189">조회수 : 189												</dd>
+													<meta itemprop="interactionCount" content="UserPageVisits:189">조회수 : ${article.readcount}</dd>
 											</dl>
 										</aside>  
 			
 
 			<section class="article-intro clearfix" itemprop="articleBody">
 											<div style="clear:both">
-												<div>안녕하세요. plz_Window입니다.</div>
-												<div><br></div>
-												<div>2019년 10월 2일(수) < 코드 베인 - 시즌 패스 >의 판매 안내 말씀드립니다.</div>
+												<div><b>${article.subject}</b></div>
 												<div><br></div>
 												<div><br></div>
 												<div>
-													<div><b>■ 코드 베인 - 시즌 패스</b><p>코드 베인&#39;의 추가 DLC 시즌 패스입니다. 새로운 강적이 기다리며, 
-													무기나 흡혈아장을 얻을 수 있는 새로운 심층 필드가 추가되는 DLC 제1탄~제3탄을 세트 가격으로 구매하실 수 있습니다.<br><br><b>
-													※ 추가 DLC 발매 예정 내용<br></b>
-													■ 제1탄~제3탄 DLC<br><br>각 DLC에는 새로운 강적이 기다리며, 무기나 흡혈아장을 얻을 수 있는 새로운 필드와 동행하는 버디들의 어나더 
-													컬러 버전, 주인공이 장비할 수 있는 블러드 코드가 세트로 포함됩니다.</p></div></div>											
+												${article.content}
+												</div>											
 												</div>
 										</section>
 

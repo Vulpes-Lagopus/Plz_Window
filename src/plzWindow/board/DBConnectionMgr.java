@@ -45,17 +45,17 @@ public class DBConnectionMgr {
 
     //
 	//private MemberDBMgr mem =null;
-    private Vector connections = new Vector(10);//커넥션풀 저장크기
-    /*   MySQL =>회원리스트(회원관리)  */
+    private Vector connections = new Vector(10);//而ㅻ꽖�뀡�� ���옣�겕湲�
+    /*   MySQL =>�쉶�썝由ъ뒪�듃(�쉶�썝愿�由�)  */
     
     
-    //(1) 멤버변수 선언
+    //(1) 硫ㅻ쾭蹂��닔 �꽑�뼵
     private String _driver,_url,_user,_password;
     /*
 	private String _driver = "org.gjt.mm.mysql.Driver",
     _url = "jdbc:mysql://127.0.0.1:3306/mydb?useUnicode=true&characterEncoding=UTF-8",
-    _user = "root",  //계정명(관리자)
-    _password = "1234"; //암호
+    _user = "root",  //怨꾩젙紐�(愿�由ъ옄)
+    _password = "1234"; //�븫�샇
     */
 	/*
 	 * private String _driver = "oracle.jdbc.driver.OracleDriver", _url =
@@ -66,22 +66,22 @@ public class DBConnectionMgr {
     private boolean _traceOn = false;
     private boolean initialized = false;
 	
-	//Ŀ�ؼ��� 10�� �غ�
+	//커占쌔쇽옙占쏙옙 10占쏙옙 占쌔븝옙
     private int _openConnections = 10;
 
-    //Ŀ�ؼ�Ǯ��ü�� ����
+    //커占쌔쇽옙풀占쏙옙체占쏙옙 占쏙옙占쏙옙
     private static DBConnectionMgr instance = null;
 
-    //(2)dbmysql.properties파일을 읽어들여서 키->값을 불러오기
+    //(2)dbmysql.properties�뙆�씪�쓣 �씫�뼱�뱾�뿬�꽌 �궎->媛믪쓣 遺덈윭�삤湲�
     public DBConnectionMgr() throws IOException {
     	Properties props=new Properties();
     	FileInputStream in=new FileInputStream
-    			("C:/Users/kitcoop/Desktop/Plz_Windows/WebContent/PlzWindowShop/dbtest/dbmysql.properties");
-    	props.load(in);//파일의 내용 메모리에 불러오기
+    			("C:/Users/kitcoop/git/Plz_Window/WebContent/PlzWindowShop/dbtest/dbmysql.properties");
+    	props.load(in);//�뙆�씪�쓽 �궡�슜 硫붾え由ъ뿉 遺덈윭�삤湲�
     	in.close();
     	_driver=props.getProperty("jdbc.drivers");
-    	//드라이브만 시스템에 반영
-    	if(_driver!=null)  System.setProperty("jdbc.drivers", _driver);//등록
+    	//�뱶�씪�씠釉뚮쭔 �떆�뒪�뀥�뿉 諛섏쁺
+    	if(_driver!=null)  System.setProperty("jdbc.drivers", _driver);//�벑濡�
     	//-------------------------------------------------------------------
     	_url=props.getProperty("jdbc.url");
     	_user=props.getProperty("jdbc.username");
@@ -94,19 +94,19 @@ public class DBConnectionMgr {
      unused connections are closed.
      */
   
-    //커넥션풀을 얻어오는 정적메서드
+    //而ㅻ꽖�뀡���쓣 �뼸�뼱�삤�뒗 �젙�쟻硫붿꽌�뱶
     public static DBConnectionMgr getInstance() throws Exception{
-        //커넥션풀이 생성이 안되어있다면
+        //而ㅻ꽖�뀡���씠 �깮�꽦�씠 �븞�릺�뼱�엳�떎硫�
 		if (instance == null) {
             synchronized (DBConnectionMgr.class) {
-                //생성이 안되어있다면
+                //�깮�꽦�씠 �븞�릺�뼱�엳�떎硫�
 				if (instance == null) {
-					//객체생성
+					//媛앹껜�깮�꽦
                     instance = new DBConnectionMgr();
                 }
             }
         }
-        return instance;//호출한 클래스쪽으로 반환
+        return instance;//�샇異쒗븳 �겢�옒�뒪履쎌쑝濡� 諛섑솚
     }
     //----------------------------------------------------------------------
     public void setOpenConnectionCount(int count) {
@@ -126,21 +126,21 @@ public class DBConnectionMgr {
 
 
     /** Opens specified "count" of connections and adds them to the existing pool */
-    //�ʱ⿡ ���ᰴü�� �������ִ� �޼ҵ�
+    //占십기에 占쏙옙占써객체占쏙옙 占쏙옙占쏙옙占쏙옙占쌍댐옙 占쌨소듸옙
 
 	public synchronized void setInitOpenConnections(int count)
             throws SQLException {
 
-        Connection c = null;//������ ��ü
-        ConnectionObject co = null;//������ ���ᰴü
-		                           //�������ִ� ��ü
+        Connection c = null;//占쏙옙占쏙옙占쏙옙 占쏙옙체
+        ConnectionObject co = null;//占쏙옙占쏙옙占쏙옙 占쏙옙占써객체
+		                           //占쏙옙占쏙옙占쏙옙占쌍댐옙 占쏙옙체
 
         for (int i = 0; i < count; i++) {
-			//count������ŭ ���ᰴü�� ����
+			//count占쏙옙占쏙옙占쏙옙큼 占쏙옙占써객체占쏙옙 占쏙옙占쏙옙
             c = createConnection();
-			//���Ϳ� ����� ���ᰴü,�뿩����
+			//占쏙옙占싶울옙 占쏙옙占쏙옙占� 占쏙옙占써객체,占쎈여占쏙옙占쏙옙
             co = new ConnectionObject(c, false);
-             //���������� ���Ϳ� ���ᰴü�� �߰�
+             //占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占싶울옙 占쏙옙占써객체占쏙옙 占쌩곤옙
             connections.addElement(co);
             trace("ConnectionPoolManager: Adding new DB connection to pool (" + connections.size() + ")");
         }
@@ -154,34 +154,34 @@ public class DBConnectionMgr {
 
 
     /** Returns an unused existing or new connection.  */
-    //���ᰴü�� ������ �޼ҵ�
+    //占쏙옙占써객체占쏙옙 占쏙옙占쏙옙占쏙옙 占쌨소듸옙
 
 	public synchronized Connection getConnection()
             throws Exception {
         if (!initialized) {
-			//������ DB�� ����̹��� �޸𸮿� �ε�
+			//占쏙옙占쏙옙占쏙옙 DB占쏙옙 占쏙옙占쏙옙譴占쏙옙占� 占쌨모리울옙 占싸듸옙
             Class c = Class.forName(_driver);
-			//�ڵ� ���(����̹�Ŭ����)
+			//占쌘듸옙 占쏙옙占�(占쏙옙占쏙옙譴占신э옙占쏙옙占�)
             DriverManager.registerDriver((Driver) c.newInstance());
 
-            initialized = true;//���ӻ��� 
+            initialized = true;//占쏙옙占쌈삼옙占쏙옙 
         }
 
 
         Connection c = null;
         ConnectionObject co = null;
-		//��������� ���� ���ᰴü
+		//占쏙옙占쏙옙占쏙옙占쏙옙占� 占쏙옙占쏙옙 占쏙옙占써객체
         boolean badConnection = false;
 
 
         for (int i = 0; i < connections.size(); i++) {
-			//���Ϳ� �� ���ᰴü�� �����´�.
+			//占쏙옙占싶울옙 占쏙옙載� 占쏙옙占써객체占쏙옙 占쏙옙占쏙옙占승댐옙.
             co = (ConnectionObject) connections.elementAt(i);
 
             // If connection is not in use, test to ensure it's still valid!
-            if (!co.inUse) {//�������� ���� ���¶�� 
+            if (!co.inUse) {//占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占승띰옙占� 
                 try {
-					//�������� ������ ���ᰴü ����
+					//占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占써객체 占쏙옙占쏙옙
                     badConnection = co.connection.isClosed();
                     if (!badConnection)
                         badConnection = (co.connection.getWarnings() != null);
@@ -191,54 +191,54 @@ public class DBConnectionMgr {
                 }
 
                 // Connection is bad, remove from pool
-                if (badConnection) { //�����ʰ� ������
-				    //���Ϳ��� �����϶�
+                if (badConnection) { //占쏙옙占쏙옙占십곤옙 占쏙옙占쏙옙占쏙옙
+				    //占쏙옙占싶울옙占쏙옙 占쏙옙占쏙옙占싹띰옙
                     connections.removeElementAt(i);
                     trace("ConnectionPoolManager: Remove disconnected DB connection #" + i);
                     continue;
                 }
 
                 c = co.connection;
-                co.inUse = true;//������ ����
+                co.inUse = true;//占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
 
                 trace("ConnectionPoolManager: Using existing DB connection #" + (i + 1));
                 break;
             }
         }
-        //��û�� ���´ٸ�(�����ϴٸ�)
+        //占쏙옙청占쏙옙 占쏙옙占승다몌옙(占쏙옙占쏙옙占싹다몌옙)
         if (c == null) {
             c = createConnection();
             co = new ConnectionObject(c, true);
-            connections.addElement(co);//���Ϳ��߰�
+            connections.addElement(co);//占쏙옙占싶울옙占쌩곤옙
 
             trace("ConnectionPoolManager: Creating new DB connection #" + connections.size());
         }
 
-        return c;//��ȯ
+        return c;//占쏙옙환
     }
 
 
     /** Marks a flag in the ConnectionObject to indicate this connection is no longer in use */
-    //�ݳ����ִ� �޼ҵ�
+    //占쌥놂옙占쏙옙占쌍댐옙 占쌨소듸옙
 	public synchronized void freeConnection(Connection c) {
-        if (c == null)//�ݳ����ִ� ���ᰴü�� ������
+        if (c == null)//占쌥놂옙占쏙옙占쌍댐옙 占쏙옙占써객체占쏙옙 占쏙옙占쏙옙占쏙옙
             return;
 
         ConnectionObject co = null;
 
         for (int i = 0; i < connections.size(); i++) {
             co = (ConnectionObject) connections.elementAt(i);
-            //�ݳ��� ���ᰴü==�޸𸮻��� ã�� ��ü
+            //占쌥놂옙占쏙옙 占쏙옙占써객체==占쌨모리삼옙占쏙옙 찾占쏙옙 占쏙옙체
 			if (c == co.connection) {
-                co.inUse = false;//�ݳ�ó��
+                co.inUse = false;//占쌥놂옙처占쏙옙
                 break;
             }
         }
 
         for (int i = 0; i < connections.size(); i++) {
             co = (ConnectionObject) connections.elementAt(i);
-            //10�̻��� �Ѱų� 
-			//������� ������ ���ᰴü�� ������
+            //10占싱삼옙占쏙옙 占싼거놂옙 
+			//占쏙옙占쏙옙占쏙옙占� 占쏙옙占쏙옙占쏙옙 占쏙옙占써객체占쏙옙 占쏙옙占쏙옙占쏙옙
 			if ((i + 1) > _openConnections && !co.inUse)
                 removeConnection(co.connection);
         }
@@ -373,11 +373,11 @@ public class DBConnectionMgr {
 
 }
 
-//inner class�� ����
+//inner class占쏙옙 占쏙옙占쏙옙
 class ConnectionObject {
-	//������ ���ᰴü
+	//占쏙옙占쏙옙占쏙옙 占쏙옙占써객체
     public java.sql.Connection connection = null;
-    public boolean inUse = false;//�뿩����
+    public boolean inUse = false;//占쎈여占쏙옙占쏙옙
 
     public ConnectionObject(Connection c, boolean useFlag) {
         connection = c;

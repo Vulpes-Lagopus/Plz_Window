@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import plzWindow.board.*;
 
 // /content.do요청
-public class ContentAction implements CommandAction {
+public class QuestionContentAction implements CommandAction {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -23,7 +23,7 @@ public class ContentAction implements CommandAction {
 	   int ref=article.getRef();
 	   int re_step=article.getRe_step();
 	   int re_level=article.getRe_level();
-	   System.out.println("content.do의 매개변수 확인");
+	   System.out.println("questioncontent.do의 매개변수 확인");
 	   System.out.println("ref=>"+ref+",re_step=>"+re_step+",re_level=>"+re_level);
 	
 		//2.처리결과를 메모리에 저장
@@ -32,7 +32,7 @@ public class ContentAction implements CommandAction {
 	    request.setAttribute("article", article);
 	    //ref,re_step,re_level 전달X ->article안에 포함이 되어있으니깐
 	    
-		return "/content.jsp";//뷰
+		return "/PlzWindowShop/Questioncontent.jsp";//뷰
 	}
 
 }
