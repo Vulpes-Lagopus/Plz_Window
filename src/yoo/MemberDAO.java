@@ -84,7 +84,7 @@ public class MemberDAO {//DBConnectionMgr->has a 관계
 			pstmt.setString(4, mem.getMem_birth());
 			pstmt.setString(5, mem.getMem_email());
 			pstmt.setString(6, mem.getMem_phone());
-			pstmt.setString(6, mem.getMem_role());
+			pstmt.setString(7, mem.getMem_role());
 			
 			
 			int insert=pstmt.executeUpdate();//반환1(성공), 0(실패)
@@ -114,13 +114,13 @@ public class MemberDAO {//DBConnectionMgr->has a 관계
 			//찾은 레코드가 한개라면 if(rs.next()) -> 한개 이상이라면 while(rs.next())
 			if(rs.next()) {
 				mem=new MemberDTO();
-				mem.setMem_id(rs.getString("id"));
-				mem.setMem_password(rs.getString("passwd"));
-				mem.setMem_name(rs.getString("name"));
-				mem.setMem_birth(rs.getString("birth"));
-				mem.setMem_email(rs.getString("email"));
-				mem.setMem_phone(rs.getString("phone"));
-				mem.setMem_role(rs.getString("role"));
+				mem.setMem_id(rs.getString("mem_id"));
+				mem.setMem_password(rs.getString("mem_password"));
+				mem.setMem_name(rs.getString("mem_name"));
+				mem.setMem_birth(rs.getString("mem_birth"));
+				mem.setMem_email(rs.getString("mem_email"));
+				mem.setMem_phone(rs.getString("mem_phone"));
+				mem.setMem_role(rs.getString("mem_role"));
 			}
 		} catch (Exception e) {
 			System.out.println("getMember()메소드 에러유발=>"+e);
@@ -132,7 +132,6 @@ public class MemberDAO {//DBConnectionMgr->has a 관계
 	//6. 찾은 데이터를 수정
 	public boolean memberUpdate(MemberDTO mem) {
 		boolean check=false;//회원가입 성공유무
-		//rs
 		try {
 			con=pool.getConnection();
 			//--트랜잭션->오라클은 필수
@@ -203,8 +202,6 @@ public class MemberDAO {//DBConnectionMgr->has a 관계
 		return x;
 	}
 	//8. 회원리스트->총 레코드수->범위를 지정->담을 메서드(10개)
-	//1) 페이징 처리를 위한 전체레코드수를 구해와야 한다.=>데이터를 출력
-	//select count(*) from member; =>반환값O, where 조건식X ->매개변수가 X
 	public int getMemberCount() { //getMemberCount()
 		int x=0;//총 레코드갯수를 저장
 		
@@ -236,7 +233,7 @@ public class MemberDAO {//DBConnectionMgr->has a 관계
 			/*
 			 * 회원id를 오름차순으로 각 필드별로 정렬하라
 			 */
-			sql="select * from member order by id limit ?,?";//1,10
+			sql="select * from member order by mem_id limit ?,?";//1,10
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, start-1);//mysql은 레코드순번이 내부적으로 0부터 시작
 			pstmt.setInt(2, end);
@@ -246,13 +243,13 @@ public class MemberDAO {//DBConnectionMgr->has a 관계
 				articleList=new ArrayList(end);//10=>end갯수만큼 데이터를 담을 공간을 생성하라
 				do {
 					MemberDTO mem=new MemberDTO();
-					mem.setMem_id(rs.getString("id"));
-					mem.setMem_password(rs.getString("passwd"));
-					mem.setMem_name(rs.getString("name"));
-					mem.setMem_birth(rs.getString("birth"));
-					mem.setMem_email(rs.getString("email"));
-					mem.setMem_phone(rs.getString("phone"));
-					mem.setMem_role(rs.getString("role"));
+					mem.setMem_id(rs.getString("mem_id"));
+					mem.setMem_password(rs.getString("mem_password"));
+					mem.setMem_name(rs.getString("mem_name"));
+					mem.setMem_birth(rs.getString("mem_birth"));
+					mem.setMem_email(rs.getString("mem_email"));
+					mem.setMem_phone(rs.getString("mem_phone"));
+					mem.setMem_role(rs.getString("mem_role"));
 					//추가
 					articleList.add(mem);
 				}while(rs.next());
