@@ -18,6 +18,15 @@
 
 
 	<dependencies>
+	
+		<dependency> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-resources-plugin</artifactId> <version>2.4.3</version> </dependency>
+
+
+	
+	
+	
+	
+	
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -147,8 +156,21 @@
 			<version>1.7.5</version>
 		</dependency>
 		
+		
+		
+		
+
+
+
+
 		<!-- spring -->
 	</dependencies>
+	
+	
+	
+
+	
+	
 	<build>
 		<finalName>Plz_Window</finalName>
 	</build>

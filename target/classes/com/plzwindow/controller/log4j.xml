@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+<!-- 콘솔에 어떻게 출력이 되는 양식설정 -->
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%p:%C{1}.%M()] %m%n" />
+		</layout>
+	</appender>
+
+<!--작성하는 클래스가 들어가 있는 패키지를 지정(최상위패키지명.하위패키지명..)
+      적용대상이 되는 범위가 달라진다.
+ -->
+	<category name="com.board" additivity="false">
+		<priority value="debug" />
+		<appender-ref ref="STDOUT" />
+	</category>
+
+  <!-- 에러가 발생이 될때 출력 -->
+	<root>
+		<priority value="error" />
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</log4j:configuration>
