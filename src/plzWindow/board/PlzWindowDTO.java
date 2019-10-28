@@ -1,21 +1,20 @@
 package plzWindow.board;
 
-import java.sql.Timestamp;//날짜와 시간을 설정할때 사용하는 클래스
+import java.sql.Timestamp;//�궇吏쒖� �떆媛꾩쓣 �꽕�젙�븷�븣 �궗�슜�븯�뒗 �겢�옒�뒪
 
 public class PlzWindowDTO {
 
-	private int num;//게시물번호
-	//--눈에 보이는 상태(입력)
-	//                    작성자     글제목   이메일   글내용    암호(->글쓰기->본인 =>글수정,글삭제할때)
-	private String writer,subject,email,content,passwd;
-	//직접 입력X
-	private Timestamp reg_date;//작성날짜->sysdate<->now()(Mysql의 내장함수)
-	private int readcount;//조회수->default->0을 부여
-	private String ip;//작성자의 ip
-	//답변형
-	private int ref;//글 그룹번호(=게시물 번호)
-	private int re_step;//답변글의 순서를 지정(=같은 그룹일때의 답변글 순서)
-	private int re_level;//답변글의 답변에 대한 깊이(=depth)
+	private int num;//寃뚯떆臾쇰쾲�샇
+	//--�늿�뿉 蹂댁씠�뒗 �긽�깭(�엯�젰)
+	//                    �옉�꽦�옄     湲��젣紐�   �씠硫붿씪   湲��궡�슜    �븫�샇(->湲��벐湲�->蹂몄씤 =>湲��닔�젙,湲��궘�젣�븷�븣)
+	private String writer,subject,content,passwd;
+	//吏곸젒 �엯�젰X
+	private Timestamp reg_date;//�옉�꽦�궇吏�->sysdate<->now()(Mysql�쓽 �궡�옣�븿�닔)
+	private int readcount;//議고쉶�닔->default->0�쓣 遺��뿬
+	//�떟蹂��삎
+	private int ref;//湲� 洹몃９踰덊샇(=寃뚯떆臾� 踰덊샇)
+	private int re_step;//�떟蹂�湲��쓽 �닚�꽌瑜� 吏��젙(=媛숈� 洹몃９�씪�븣�쓽 �떟蹂�湲� �닚�꽌)
+	private int re_level;//�떟蹂�湲��쓽 �떟蹂��뿉 ���븳 源딆씠(=depth)
 	//----------------------------------------------------------
 	
 	public int getNum() {
@@ -35,12 +34,6 @@ public class PlzWindowDTO {
 	}
 	public void setSubject(String subject) {
 		this.subject = subject;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
 	}
 	public String getContent() {
 		return content;
@@ -65,12 +58,6 @@ public class PlzWindowDTO {
 	}
 	public void setReadcount(int readcount) {
 		this.readcount = readcount;
-	}
-	public String getIp() {
-		return ip;
-	}
-	public void setIp(String ip) {
-		this.ip = ip;
 	}
 	public int getRef() {
 		return ref;

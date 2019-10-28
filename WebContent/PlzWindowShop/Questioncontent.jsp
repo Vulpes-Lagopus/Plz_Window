@@ -157,13 +157,22 @@
 
 			<section class="article-intro clearfix" itemprop="articleBody">
 											<div style="clear:both">
+<<<<<<< HEAD
+=======
+												<div><b>${article.subject}</b></div>
+												<div><br></div>
+												<div><br></div>
+>>>>>>> branch 'Soo' of https://github.com/Vulpes-Lagopus/Plz_Window.git
 												<div>
 												${article.content}
 												</div>											
+<<<<<<< HEAD
 												</div>
 												
 												<div class="pagination" style="float:right;">
 													<a href="/Plz_Windows/writeForm.do?num=${article.num}&ref=${article.ref}&re_step=${article.re_step}&re_level=${article.re_level}" class="page">답글</a>
+=======
+>>>>>>> branch 'Soo' of https://github.com/Vulpes-Lagopus/Plz_Window.git
 												</div>
 										</section>
 
