@@ -73,6 +73,34 @@ public class BascketDAO {
 		return basc;
 	}
 	
+	public boolean bascketUpdate(BascketDTO basc) {
+		boolean check=false;
+		try {
+			con=pool.getConnection();
+			//--트랜잭션->오라클은 필수
+			con.setAutoCommit(false);//default->con.setAutoCommit(true)
+			//------------------------------
+			sql="update bascket set basc_quantity where basc_number=?";
+			
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, basc.getBasc_quantity());
+			pstmt.setString(2, basc.getBasc_number());
+			
+			
+			int update=pstmt.executeUpdate();//반환1(성공), 0(실패)
+			System.out.println("update(데이터 수정유무)=>"+update);
+			con.commit();//실질적으로 메모리상의 insert->테이블에 반영
+			if(update==1) {
+				check=true;//데이터 성공확인
+			}
+		}catch(Exception e) {
+			System.out.println("bascketUpdate()에러유발=>"+e);
+		}finally {
+			pool.freeConnection(con, pstmt);
+		}
+		return check;
+	}
+	
 	//3.장바구니	삭제
 	public int bascketDelete(String basc_number, String mem_id) {
 		String number="";

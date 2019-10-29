@@ -7,6 +7,12 @@ public class PackageDTO {
 	private String pack_name;
 	private int pack_price;
 	private String pack_date;
+	private String pack_detail1;
+	private String pack_detail2;
+	private String pack_detail3;
+	private String pack_img1;
+	private String pack_img2;
+	
 	
 	
 	public String getPack_id() {
@@ -38,6 +44,36 @@ public class PackageDTO {
 	}
 	public void setPack_date(String pack_date) {
 		this.pack_date = pack_date;
+	}
+	public String getPack_detail1() {
+		return pack_detail1;
+	}
+	public void setPack_detail1(String pack_detail1) {
+		this.pack_detail1 = pack_detail1;
+	}
+	public String getPack_detail2() {
+		return pack_detail2;
+	}
+	public void setPack_detail2(String pack_detail2) {
+		this.pack_detail2 = pack_detail2;
+	}
+	public String getPack_detail3() {
+		return pack_detail3;
+	}
+	public void setPack_detail3(String pack_detail3) {
+		this.pack_detail3 = pack_detail3;
+	}
+	public String getPack_img1() {
+		return pack_img1;
+	}
+	public void setPack_img1(String pack_img1) {
+		this.pack_img1 = pack_img1;
+	}
+	public String getPack_img2() {
+		return pack_img2;
+	}
+	public void setPack_img2(String pack_img2) {
+		this.pack_img2 = pack_img2;
 	}
 	
 	
