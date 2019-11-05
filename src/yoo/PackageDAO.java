@@ -155,17 +155,27 @@ public class PackageDAO {
 			con=pool.getConnection();
 			con.setAutoCommit(false);
 			
-			pstmt=con.prepareStatement("select mem_id from member where pack_id=?");
-			pstmt.setString(1, pack_id);
+			pstmt=con.prepareStatement("select pack_id from member where mem_id=?");
+			pstmt.setString(1, mem_id);
 			rs=pstmt.executeQuery();
 			//장바구니에 존재한다면
 			if(rs.next()) {
-				number=rs.getString("mem_id");
+				number=rs.getString("pack_id");
 				System.out.println("number=>"+number);
 
-				if(number.equals(mem_id)) {
-					pstmt=con.prepareStatement("delete from package where mem_id=?");
-					pstmt.setString(1, mem_id);
+				if(number.equals(pack_id)) {
+					pstmt=con.prepareStatement("delete from package where pack_id=?");
+					pstmt.setString(1, pack_id);
+					
+					pstmt=con.prepareStatement("delete from pack_genre where pack_id=?");
+					pstmt.setString(1, pack_id);
+					
+					pstmt=con.prepareStatement("delete from pack_lang where pack_id=?");
+					pstmt.setString(1, pack_id);
+					
+					pstmt=con.prepareStatement("delete from pack_platform where pack_id=?");
+					pstmt.setString(1, pack_id);
+					
 					int delete=pstmt.executeUpdate();
 					System.out.println("delete(장바구니 삭제 유무)=>"+delete);
 					con.commit();
@@ -177,7 +187,7 @@ public class PackageDAO {
 				x=-1;//삭제 실패 -> 존재X
 			}
 		} catch (Exception e) {
-			System.out.println("bascketDelete()오류=>"+e);
+			System.out.println("packageDelete()오류=>"+e);
 		} finally {
 			pool.freeConnection(con, pstmt, rs);
 		}
