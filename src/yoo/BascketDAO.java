@@ -51,7 +51,8 @@ public class BascketDAO {
 		}
 		return check;
 	}
-	//2.장바구니 상품수정
+	
+	//장바구니 특정 상품 찾기
 	public BascketDTO getBascket(String basc_number) {
 		BascketDTO basc=null;//id값에 해당되는 레코드 한개를 저장
 		
@@ -73,6 +74,10 @@ public class BascketDAO {
 		return basc;
 	}
 	
+	//장바구니 리스트
+	
+	
+	//2.장바구니 상품수정
 	public boolean bascketUpdate(BascketDTO basc) {
 		boolean check=false;
 		try {

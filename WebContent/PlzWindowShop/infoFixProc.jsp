@@ -26,7 +26,7 @@
     %>
         <script>
         	alert("성공적으로 수정되었습니다.");
-        	location.href="Login.jsp";
+        	location.href="login.jsp";
         </script>
   <%}else{ %>
   		<script>

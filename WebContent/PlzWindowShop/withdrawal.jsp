@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,14 +79,14 @@ table.kblocktable tr th {
 												<input type="hidden" id="mode" name="mode"  value="leave">
 												<fieldset style="border:0; color:black">
 													<div class="form-group">
-														<label for="mem_id" class="col-sm-2 control-label">아이디</label>
-														<div class="col-sm-3 sol-sm-offset-7" style="margin-top:-14px; padding:0">topgame12@naver.com</div>
+														<label for="${mem_id}" class="col-sm-2 control-label">아이디</label>
+														<div class="col-sm-3 sol-sm-offset-7" style="margin-top:-14px; padding:0">${mem_id}</div>
 													</div>
 
 													<div class="form-group">
 														<label for="m_pwd" class="col-sm-2 control-label" style="margin-bottom:-10px">비밀번호</label>
 														<div class="col-sm-6">
-															<input type="password" class="form-control" id="m_pwd" name="m_pwd" required="required" 
+															<input type="password" class="form-control" id="${mem_password}" name="${mem_passowrd}" required="required" 
 															          style="border:1px solid black; color:black;">
 														</div>
 				

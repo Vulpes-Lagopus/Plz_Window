@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,9 +103,9 @@ table.kblocktable tr th {
 										color=#FFFFFF>비고</font></td>
 								</tr>
 								<tr>
-									<td width=290 height=26 align=center class=t1>풋볼 매니저 2020</td>
+									<td width=290 height=26 align=center class=t1>${pack_name}</td>
 									<td width=112 height=26 align=center class=t1>1</td>
-									<td width=166 height=26 align=center class=t1>54,000</td>
+									<td width=166 height=26 align=center class=t1>${pack_price}</td>
 									<td width=50 height=26 align=center class=t1><a
 										href=DeleteItemServlet?dogName=bigle class=m1>삭제</a></td>
 								</tr>
